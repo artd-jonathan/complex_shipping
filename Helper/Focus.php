@@ -46,7 +46,11 @@ class Focus extends \Magento\Framework\App\Helper\AbstractHelper
         $this->_destination = $this->_DANE->getDANECode();
         $this->_logger->info("Destination => ".$this->_destination);
     }
-
+    /**
+     * @param string $focusUser
+     * @param string $focusPassword
+     * @return void
+     */
     public function generateToken(string $focusUser, string $focusPassword){
         $url = $this->_focusBaseUrl.'/token/';
         $headers = [
@@ -69,6 +73,13 @@ class Focus extends \Magento\Framework\App\Helper\AbstractHelper
             $this->_logger->info(json_encode($e));
         }
     }
+    /**
+     * @param [type] $pieces
+     * @param [type] $weight
+     * @param [type] $value
+     * @param [type] $increment_id
+     * @return void
+     */
     public function calculateRate($pieces, $weight, $value, $increment_id){
         $url = $this->_focusBaseUrl.'/carries/servientrega/quote/';
         $headers = [
